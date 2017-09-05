@@ -14,6 +14,16 @@ public class Address {
 
     public final String value;
     private boolean isPrivate;
+    public static String block;
+    private String street;
+    private String unit;
+    private String postalCode;
+    private String[] parts;
+
+    Block myBlock = new Block();
+    Street myStreet = new Street();
+    Unit myUnit = new Unit();
+    PostalCode myPostalCode = new PostalCode();
 
     /**
      * Validates given address.
