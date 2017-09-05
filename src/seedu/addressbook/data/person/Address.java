@@ -37,6 +37,17 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = trimmedAddress;
+
+        parts = value.split("\\,");
+        this.block = parts[0];
+        this.street = parts[1];
+        this.unit = parts[2];
+        this.postalCode = parts[3];
+
+        myBlock.setBlock(this.block);
+        myStreet.setStreet(this.street);
+        myUnit.setUnit(this.unit);
+        myPostalCode.setPostalCode(this.postalCode);
     }
 
     /**
