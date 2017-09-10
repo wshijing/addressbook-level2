@@ -8,22 +8,20 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "123, some street";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+    public static final String EXAMPLE = "123, some street, some unit, some postal code";
+    public static final String ADDRESS_FORMAT = "a/BLOCK, STREET, UNIT, POSTAL_CODE";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in the following format " + ADDRESS_FORMAT;
+    public static final String ADDRESS_VALIDATION_REGEX = "\\d+,.*,.*,.\\d+";
 
     public final String value;
     private boolean isPrivate;
-    public static String block;
-    private String street;
-    private String unit;
-    private String postalCode;
-    private String[] parts;
 
-    Block myBlock = new Block();
-    Street myStreet = new Street();
-    Unit myUnit = new Unit();
-    PostalCode myPostalCode = new PostalCode();
+    //private String[] parts = new String[]{""};
+
+    private final Block block;
+    private final Street street;
+    private final Unit unit;
+    private final PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -38,16 +36,12 @@ public class Address {
         }
         this.value = trimmedAddress;
 
-        parts = value.split("\\,");
-        this.block = parts[0];
-        this.street = parts[1];
-        this.unit = parts[2];
-        this.postalCode = parts[3];
+        String[] parts = trimmedAddress.split(",");
 
-        myBlock.setBlock(this.block);
-        myStreet.setStreet(this.street);
-        myUnit.setUnit(this.unit);
-        myPostalCode.setPostalCode(this.postalCode);
+        block = new Block(parts[0]);
+        street = new Street(parts[1]);
+        unit = new Unit(parts[2]);
+        postalCode = new PostalCode(parts[3]);
     }
 
     /**
