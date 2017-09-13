@@ -38,9 +38,11 @@ public class UtilsTest {
     public void isAnyNull() throws Exception{
         // contain one null object
         assertIsNull((Object) null);
+        assertIsNull(null, "xyz");
 
         // no null objects
         assertIsNotNull("xyz", "xyz");
+        assertIsNotNull(1, 2, 3);
     }
 
     private void assertIsNull(Object... objects)  { assertTrue(Utils.isAnyNull(objects)); }
